@@ -7,30 +7,7 @@ En el evento, obtener el texto.
 Agregar el texto al HTML.
 */
  
- /*___________________________________________________________________
- Deshabilitar boton   
- ------------------
-
-    var btnTwit = document.getElementById("btn"); // boton twittear
-    var comments = document.getElementById("comment").value; 
-if(comments==""){
-	disable();
-}else if(comments=!""){
-	enable();
-}
-
-function disable(){
-  btnTwit.disabled=true;
-}
-
-function enable(){
-  btnTwit.disabled=false;
-
-}
-______________________________________________________________________*/
-
-
-function add(){
+ function add(){
 	// Para guardar el comentario, saco el valor de este elemento
 	var comments = document.getElementById("comment").value; // Agarra al comentario
 	document.getElementById("comment").value = ""; // Limpia la caja de comentarios
@@ -64,11 +41,42 @@ function add(){
     cont.insertBefore(newComments, cont.children[0]);	
 }
 
-/*_______________________________________________________________________
+ /*___________________________________________________________________
+ Deshabilitar boton   
+ ------------------
+
+    var btnTwit = document.getElementById("btn"); // boton twittear
+    var comments = document.getElementById("comment").value; 
+if(comments==""){
+	disable();
+}else if(comments=!""){
+	enable();
+}
+
+function disable(){
+  btnTwit.disabled=true;
+}
+
+function enable(){
+  btnTwit.disabled=false;
+
+}
+______________________________________________________________________
+function txtKeyPress(val,btn){
+
+	if (val==null || val=="") {
+		document.getElementById("btn").disabled=true;
+	}else if (val!=null || val!="") {
+		document.getElementById("btn").disabled=false;
+	}
+}
+
+_______________________________________________________________________
+
 contenidoTwitt almacena el contenido del campo 
 textarea. Al principio está inicializada vacía, 
 porque el textarea suponemos que está vacío.
-var contenidoTwitt = "";
+var contenidoTweet = "";
 var maxCaracteres = 0;
 var caracteresRed=10;
 var caracteresYellow=20;
@@ -94,15 +102,33 @@ function validaCaracteres(){
 }
 
 _______________________________________________________________________________*/
+/*
+- No ingresar texto vacío (deshabilitar el botón de "twittear").
+- Contar la cantidad de caracteres de forma regresiva.
+*/
+
 //FUNCION CUENTA REGRESIVA
 function contar() { 
-         var max = "140"; 
-         var cadena = document.getElementById("comment").value; 
-         var longitud = cadena.length; 
+	var max = "140"; //maximo de caracteres
+	var cadena = document.getElementById("comment").value; //Texto del textarea
+	var long = cadena.length; //logitud del texto
+	var yellow = "20";
+	var red = "10";
 
-             if(longitud <= max) { 
-                  document.getElementById("contador").value = max-longitud; 
-             } else { 
-                  document.getElementById("comment").value = cadena.substr(0, max);
-             } 
-    } 
+	
+	 if(long <= max) { 
+	      document.getElementById("contador").value = max-long; 
+	 } else { 
+	 	/*substr: Obtiene una subcadena que comienza en la ubicación especificada 
+	 	y tiene la longitud especificada.*/
+	    cadena.value = cadena.substr(0, max);
+	 } 
+}
+
+var textarea = document.getElementById("comment");
+var heightLimit = 600; /* Maximum height: 200px */
+
+textarea.oninput = function() {
+  textarea.style.height = ""; /* Reset the height*/
+  textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + "px";
+};
