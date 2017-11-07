@@ -1,9 +1,7 @@
 body{
 	background-image: url(../img/bg-bike2.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
-
 }
+
 header{
 	width: 100%;
 	height: 100px;
@@ -17,6 +15,9 @@ header{
 	height: 100px;
 }
 
+.twit{
+	/*display: */
+}
 
 .fijo,.center{
 	text-align: center;

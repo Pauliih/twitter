@@ -12,8 +12,9 @@ function add(){
 	document.getElementById("comment").value = ""; // Limpia la caja de comentarios
 
 	var newComments = document.createElement('div'); //Creamos el contenedor para los comentarios
-	var cont = document.getElementById('cont'); //Obtenemos el ID den contendor
+		newComments.classList.add('twit');
 
+	var cont = document.getElementById('cont'); //Obtenemos el ID den contendor
 
 	//Creo un párrafo (papá)
 	var paragraph = document.createElement('p');
@@ -22,23 +23,19 @@ function add(){
 
 	//Creamos un nodo de texto (hijo)
 	var nodoText = document.createTextNode(comments);
-	
 	var dateSpan = document.createElement("span");
 
+	//Le doy atributo a dateSpan
     dateSpan.textContent = moment().format('hh:mm');
 
-
-
-
+    //Le asignamos el nodo texto como hijo a paragraph
 	paragraph.appendChild(nodoText);
-    
-
 
 	//Le asignamos los hijos al contenedor
 	newComments.appendChild(paragraph);
 	newComments.appendChild(enter);
 	newComments.appendChild(dateSpan);
 
-	cont.appendChild(newComments);
-	
+	//para que el ultimo comentario hecho salga primero
+    cont.insertBefore(newComments, cont.children[0]);	
 }
