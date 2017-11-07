@@ -17,12 +17,28 @@ function add(){
 
 	//Creo un párrafo (papá)
 	var paragraph = document.createElement('p');
+
+	var enter = document.createElement('br');
+
 	//Creamos un nodo de texto (hijo)
 	var nodoText = document.createTextNode(comments);
+	
+	var dateSpan = document.createElement("span");
+
+    dateSpan.textContent = moment().format('hh:mm');
+
+
+
+
 	paragraph.appendChild(nodoText);
+    
+
 
 	//Le asignamos los hijos al contenedor
 	newComments.appendChild(paragraph);
+	newComments.appendChild(enter);
+	newComments.appendChild(dateSpan);
+
 	cont.appendChild(newComments);
 	
 }
