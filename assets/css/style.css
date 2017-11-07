@@ -1,0 +1,52 @@
+body{
+	background-image: url(../img/bg-bike2.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+
+}
+header{
+	width: 100%;
+	height: 100px;
+	background-color: #34CCFF;
+	margin: 0;
+	padding: 0;
+}
+
+.logo{
+	width: auto;
+	height: 100px;
+}
+
+.link-cod{
+	text-align: left;
+}
+.fijo,.center{
+	text-align: center;
+	width: 45%;
+	background-color: white;
+	margin-top: 20px;
+	display: inline-block;
+}
+
+.container{
+	text-align: center;
+}
+
+.txtarea{
+	padding-top: 20px; 
+}
+#cont{
+	margin-left: 1em;
+}
+
+#cont div{
+	padding: 1em 0.5em;
+	margin-bottom: 2em;
+	outline: 0.1em solid #E5E3F2;
+	background-color: #fff;
+}
+
+p{
+	display: inline-block;
+	margin-left: 0.5em;
+}

@@ -3,8 +3,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Twitter</title>
+
+	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+	<header>
+		<div class="container">
+			<img src="assets/img/twitter-logo.jpg" alt="logo" class="logo">
+		</div>
+	</header>
+	<section class="fijo">
+		<div class="container">
+			<h2>Reto de código</h2>
+			<p>Hola,<br>soy front-end developer jr.</p>
+			<hr>
+			<a href="#">CÓDIGO</a>
+		</div>
+	</section>
+	<section class="center">
+		<div class="container txtarea">
+			<!-- Textarea para escribir comentarios -->
+			<textarea class="txt" id="comment" placeholder="¿Qué está pasando?"></textarea>
+			<br>
+			<button type="button" id="btn" onclick="add()">Twittear</button>
+			
+			<!-- Contenedor comentarios -->
+			<div id="cont"></div>
+		</div>
+	</section>
+	<!-- Enlazamos scripts -->
+	<script type="text/javascript" src="assets/js/app.js"></script>
 	
 </body>
 </html>
