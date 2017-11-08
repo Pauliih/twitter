@@ -6,39 +6,48 @@ Agregar un evento de click al botón o de submit al formulario.
 En el evento, obtener el texto.
 Agregar el texto al HTML.
 */
- 
- function add(){
+
+function add(){
+
+
 	// Para guardar el comentario, saco el valor de este elemento
 	var comments = document.getElementById("comment").value; // Agarra al comentario
-	document.getElementById("comment").value = ""; // Limpia la caja de comentarios
+	if(comments=="" || comments.length>140){
+		var boton = document.getElementById('btn');
+		boton.enable=false;
+	}else{
 
-	var newComments = document.createElement('div'); //Creamos el contenedor para los comentarios
-		newComments.classList.add('twit');
+		document.getElementById("comment").value = ""; // Limpia la caja de comentarios
 
-	var cont = document.getElementById('cont'); //Obtenemos el ID den contendor
 
-	//Creo un párrafo (papá)
-	var paragraph = document.createElement('p');
+		var newComments = document.createElement('div'); //Creamos el contenedor para los comentarios
+			newComments.classList.add('twit');
 
-	var enter = document.createElement('br');
+		var cont = document.getElementById('cont'); //Obtenemos el ID den contendor
 
-	//Creamos un nodo de texto (hijo)
-	var nodoText = document.createTextNode(comments);
-	var dateSpan = document.createElement("span");
+		//Creo un párrafo (papá)
+		var paragraph = document.createElement('p');
 
-	//Le doy atributo a dateSpan
-    dateSpan.textContent = moment().format('hh:mm');
+		var enter = document.createElement('br');
 
-    //Le asignamos el nodo texto como hijo a paragraph
-	paragraph.appendChild(nodoText);
+		//Creamos un nodo de texto (hijo)
+		var nodoText = document.createTextNode(comments);
+		var dateSpan = document.createElement("span");
 
-	//Le asignamos los hijos al contenedor
-	newComments.appendChild(paragraph);
-	newComments.appendChild(enter);
-	newComments.appendChild(dateSpan);
+		//Le doy atributo a dateSpan
+	    dateSpan.textContent = moment().format('hh:mm a');
 
-	//para que el ultimo comentario hecho salga primero
-    cont.insertBefore(newComments, cont.children[0]);	
+	    //Le asignamos el nodo texto como hijo a paragraph
+		paragraph.appendChild(nodoText);
+
+		//Le asignamos los hijos al contenedor
+		newComments.appendChild(paragraph);
+		newComments.appendChild(enter);
+		newComments.appendChild(dateSpan);
+
+		//para que el ultimo comentario hecho salga primero
+	    cont.insertBefore(newComments, cont.children[0]);	
+	}
 }
 
  /*___________________________________________________________________
@@ -100,7 +109,26 @@ function validaCaracteres(){
 	
 	contar();
 }
-
+________________________________________________________________________________
+function countCharacters () {
+    var long = 140;
+    var subs = "";
+    var characters = document.getElementById("comment").value.length;
+    subs = long - characters;
+    document.getElementById("counter").value = subs;
+    if (subs < 0) {
+        counter.style.color = "red";
+    }
+    else if (subs >=0 && subs <10) {
+        counter.style.color = "gray";
+    }
+    else if (subs >=10 && subs <20) {
+        counter.style.color = "green";
+    }
+    else {
+        counter.style.color = "#7BA5E5 ";
+    }
+}
 _______________________________________________________________________________*/
 /*
 - No ingresar texto vacío (deshabilitar el botón de "twittear").
@@ -112,17 +140,27 @@ function contar() {
 	var max = "140"; //maximo de caracteres
 	var cadena = document.getElementById("comment").value; //Texto del textarea
 	var long = cadena.length; //logitud del texto
-	var yellow = "20";
-	var red = "10";
+	var yellow = "120";
+	var red = "130";
+    var contador = document.getElementById("contador").value;
 
+	document.getElementById("contador").value = max-long;
 	
-	 if(long <= max) { 
-	      document.getElementById("contador").value = max-long; 
-	 } else { 
-	 	/*substr: Obtiene una subcadena que comienza en la ubicación especificada 
-	 	y tiene la longitud especificada.*/
-	    cadena.value = cadena.substr(0, max);
-	 } 
+	/* if(long >= yellow && long < red) {  //longitud >= 120 y longitud < 130
+                contador.classList.remove("turquesa");
+                contador.classList.add("violet");
+        } else if(long >= red && long < max) {  //longitud >= 130 y longitud < 140
+                contador.classList.remove("violet");
+                contador.classList.remove("red");
+                contador.classList.add("turquesa");	
+        } else if(long >= max){//longitud >= 140
+                contador.classList.remove("turquesa");
+                contador.classList.remove("violet");
+                contador.classList.add("red");
+                boton.disabled = true;
+        }     
+    } */
+
 }
 
 var textarea = document.getElementById("comment");
